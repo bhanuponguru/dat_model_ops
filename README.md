@@ -1,82 +1,173 @@
-# Forms benchmarking
+# ModelOps for Health Insurance AI Agents: Form Digitization Benchmark
 
-The archives in `datasets/` have been unpacked into `datasets/unpacked/`. The
-benchmark covers every image with a matching ground-truth file:
+**Authors**: Ponguru Bhanu (CS23BTECH11046) & Krapa Sandeep (CS23BTECH11027)  
+**Affiliation**: Department of Computer Science and Engineering, IIT Hyderabad  
+**Domain Focus**: ModelOps, Privacy-Preserving On-Premises Vision-Language Models, Constrained Decoding
 
-| Dataset | Label format | Expected task |
-|---|---|---|
-| Forms600 | Nested JSON | Generic form key/value extraction |
-| SROIE Invoice Dataset | Flat JSON | Invoice field extraction |
-| Nigeria medical records | Flat JSON | Medical-record field extraction |
-| funds_handwritten_dataset | Flat JSON | Handwritten fax/form extraction |
-| IDRBT Cheque Dataset | Flat JSON | Cheque field extraction |
-| IAM handwriting finevision | CSV | Single-field handwriting transcription |
+---
 
-Run a vLLM server with its OpenAI-compatible multimodal Chat Completions API,
-then run:
+## 1. Overview & Problem Formulation
 
-```bash
-uv run python benchmark.py --model nuextract3
+Autonomous insurance agents automate claims adjudication, pre-authorizations, coverage checks, and fraud triage. A foundational component in these pipelines is **form digitization**: converting heterogeneous physical and scanned documents into structured, validated JSON entities for downstream rule engines.
+
+This repository implements a reproducible benchmarking suite and ModelOps evaluation framework designed around two core operational constraints:
+
+1. **Data Privacy Mandates (PHI/HIPAA)**: Medical claims and banking records contain Protected Health Information (PHI). Data protection regulations restrict transmitting raw document images to third-party public cloud APIs, requiring the document intake pipeline to run strictly on-premises.
+2. **Compute Constraints**: Regional insurance administrators, hospitals, and third-party administrators (TPAs) operate under restricted compute budgets, requiring small vision-language models ($\le 4\text{B}$ parameters) executable on local commodity GPUs.
+3. **Structured Constrained Decoding**: Unconstrained autoregressive generation produces syntax errors, invented keys, and formatting drift. Candidate models are evaluated under token-level logit masking via vLLM and Pydantic Context-Free Grammars (CFGs).
+
+---
+
+## 2. Benchmark Architecture & Candidate Models
+
+The pipeline serves models locally via vLLM's OpenAI-compatible Chat Completions API with grammar-guided logit masking (`response_format={"type": "json_schema", ...}`).
+
+### Candidate Models Evaluated
+- **NuExtract 3** (~3.8B parameters): Vision-language model fine-tuned specifically for structured information extraction.
+- **IBM Granite Vision 3.1-2B** (~2B parameters): Compact generalist multimodal foundation model.
+
+---
+
+## 3. Dataset Inventory
+
+The benchmark encompasses **163 paired evaluation documents** across six collections covering real-world insurance intake formats:
+
+| Dataset Collection | Documents | Target Fields | Document Archetype |
+| :--- | :---: | :--- | :--- |
+| **Forms-600** | 25 | 11–19 demographic, academic, and banking fields | Multi-column administrative applications |
+| **SROIE Invoices** | 25 | `company`, `date`, `address`, `total` | Commercial & pharmacy receipts |
+| **Nigerian Medical Records** | 22 | `name`, `age`, `sex` | Handwritten clinical encounter cards |
+| **Funds Administrative Forms** | 26 | 8–18 structured header and memo fields | Administrative faxes and cover sheets |
+| **IDRBT Banking Cheques** | 25 | `payee_name`, `amount_legal`, `amount`, `year`, `account_no` | Financial verification cheques |
+| **IAM Cursive Handwriting** | 40 | Full-line handwriting transcription | Baseline visual OCR |
+| **Total Benchmark Suite** | **163** | — | — |
+
+Datasets are stored in `datasets/unpacked/`.
+
+---
+
+## 4. Evaluation Protocol & Multi-Perspective Metrics
+
+Model predictions are evaluated across multiple complementary dimensions:
+
+- **Strict Whole-Form Accuracy**: Fraction of documents where every target field matches ground truth exactly after lowercasing and whitespace collapsing.
+- **Domain-Aware Robust Whole-Form Accuracy**: Evaluated after canonicalizing domain-specific surface differences:
+  - *Dates*: Canonicalized to ISO `YYYY-MM-DD` (e.g., `15/01/18` $\rightarrow$ `2018-01-15`).
+  - *Currencies & Numbers*: Stripping currency prefixes (`RM`, `$`), decimal padding, and Indian comma formatting (`88,00,000` $\rightarrow$ `8800000`).
+  - *Categorical & Units*: Standardizing sex codes (`M`/`F` $\rightarrow$ `male`/`female`) and stripping age unit suffixes (`41 years` $\rightarrow$ `41`).
+- **Mean Field Accuracy (Strict & Robust)**: Per-document field accuracy averaged across the collection.
+- **Micro-Averaged Precision, Recall & F1-Score**: Overall entity coverage penalizing missing, extra, and misread fields.
+- **Normalized Edit Distance (NED)**: Character-level transcription accuracy:
+  $$\text{NED}(y, \hat{y}) = 1 - \frac{\text{Levenshtein}(y, \hat{y})}{\max(|y|, |\hat{y}|)}$$
+- **Operational Latency & Decoding Stability**: End-to-end request latency and termination status tracking (`stop` vs `length` token exhaustion).
+
+---
+
+## 5. Aggregate Benchmark Results
+
+Results across all 163 documents under Pydantic logit masking:
+
+| Dataset Collection | Docs | Whole Strict (Nu / Granite) | Whole Robust (Nu / Granite) | Field Strict (Nu / Granite) | Field Robust (Nu / Granite) | Robust F1 (Nu / Granite) | Mean NED (Nu / Granite) |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| **Forms-600 Admissions** | 25 | 4.0% / 4.0% | 4.0% / 4.0% | 65.3% / 63.0% | 70.0% / 65.6% | 0.700 / 0.656 | 83.5% / 80.2% |
+| **SROIE Invoices** | 25 | 36.0% / 0.0% | 40.0% / 20.0% | 76.0% / 36.0% | 79.0% / 44.0% | 0.790 / 0.440 | 93.2% / 51.3% |
+| **Nigerian Medical** | 22 | 9.1% / 4.5% | 31.8% / 9.1% | 42.4% / 42.4% | 72.7% / 59.1% | 0.727 / 0.591 | 69.3% / 69.2% |
+| **Funds Administrative** | 26 | 46.2% / 38.5% | 46.2% / 38.5% | 89.6% / 79.3% | 90.7% / 79.8% | 0.907 / 0.798 | 97.9% / 86.3% |
+| **IDRBT Cheques** | 25 | 24.0% / 0.0% | 28.0% / 0.0% | 75.2% / 36.0% | 78.4% / 40.0% | 0.784 / 0.400 | 95.6% / 54.3% |
+| **IAM Handwriting** | 40 | 37.5% / 37.5% | 40.0% / 40.0% | 37.5% / 37.5\% | 40.0% / 40.0% | 0.400 / 0.400 | 98.2% / 94.5% |
+| **Overall / Mean** | **163** | **26.1% / 7.4%** | **31.7% / 18.6%** | **64.3% / 49.0%** | **71.8% / 54.8%** | **0.718 / 0.548** | **89.6% / 72.6%** |
+
+### Operational Profiles
+- **NuExtract 3**: Mean latency of 2.58s per document. Achieved 100% normal termination (`finish_reason='stop'`) with zero token exhaustion crashes.
+- **IBM Granite Vision**: Achieved fast inference on single cursive lines (0.92s on IAM handwriting). However, it suffered 19 token-exhaustion loop terminations (`finish_reason='length'`) across SROIE receipts (9) and IDRBT cheques (10), increasing average cheque latency to 25.5s.
+
+---
+
+## 6. Qualitative Findings & Diagnosed Failure Modes
+
+Evaluating both models head-to-head on the identical document across four form archetypes revealed four recurring failure modes:
+
+1. **1D Spatial Coordinate Disconnect**: On multi-column forms (Forms-600 Form 19), large horizontal whitespace margins separating labels and values lead to field dropouts (NuExtract: 26.3% accuracy, Granite: 47.4%). Autoregressive token decoders lack explicit 2D bounding-box coordinates.
+2. **CFG Whitespace Repetition Loops**: Standard JSON Context-Free Grammars permit arbitrary whitespace (`\s*`). On ambiguous documents (SROIE Receipt 3, Cheque 309097, Form 7), Granite Vision's low-confidence policy falls into infinite space/tab loops until hitting the 4096-token ceiling.
+3. **Physical Scan Degradation**: Low-contrast ballpoint text (AMR_057) caused Granite to emit null strings, whereas NuExtract extracted all fields. Reverse-side carbon ink bleed (AMR_058) caused character misreadings (`P. J` $\rightarrow$ `P. I`).
+4. **Clinical Normalization Discrepancy**: On medical card AMR_001, both models scored 0% strict accuracy despite reading `41` and `F` correctly because reference labels contained `41 years` and `Female`. Domain normalization yielded 100% accuracy, reflecting a +30.3% gap across the clinical collection.
+
+---
+
+## 7. ModelOps Next Steps: Fine-Tuning & Deployment Roadmap
+
+The benchmark results define the subsequent development phases:
+
+1. **Supervised Fine-Tuning (SFT) with 2D Coordinate Grounding**:
+   - Train on an expanded domain dataset (claims, bills, cards, cheques) with cross-entropy loss:
+     $$\mathcal{L}_{\text{SFT}}(\theta) = -\sum_{t=1}^{T} \log P_\theta(y_t \mid y_{<t}, X_{\text{image}}, S_{\text{schema}})$$
+   - Incorporate 2D bounding-box spatial coordinates and synthetic scan noise (blur, bleed, contrast downsampling) to resolve table and multi-column field dropouts.
+2. **Preference Alignment (RLHF / DPO)**:
+   - Optimize model weights using a multi-objective reward function evaluated against reference annotations $y^*$:
+     $$R(y, y^*) = \alpha_1 \cdot \text{NED}(y, y^*) + \alpha_2 \cdot F_1(y, y^*) - \alpha_3 \cdot \mathcal{P}_{\text{rep}}(y) - \alpha_4 \cdot \mathcal{P}_{\text{format}}(y)$$
+   - $\mathcal{P}_{\text{rep}}$ penalizes repetitive whitespace and token loops to eliminate CFG loop traps.
+   - $\mathcal{P}_{\text{format}}$ penalizes non-canonical date formats and unnormalized units.
+3. **On-Premises Deployment**:
+   - Serve the fine-tuned model checkpoint locally via vLLM with Pydantic logit masking for private, high-throughput intake in insurance agents.
+
+---
+
+## 8. Repository Structure
+
+```
+├── benchmark.py                 # Multi-domain benchmarking engine with concurrent vLLM requests
+├── schemas.py                   # Pydantic v2 schemas and JSON Schema compilation
+├── metrics.py                   # Strict/Robust exact match, F1, NED, latency, and failure metrics
+├── analyze_results.py           # Result aggregation, statistical summaries, and LaTeX table generator
+├── generate_slides.py           # 16:9 presentation slide deck generator (python-pptx)
+├── progress_report.tex          # LaTeX technical progress report source
+├── progress_report.pdf          # Compiled 9-page technical report
+├── datasets/
+│   └── unpacked/               # Extracted images, ground-truth JSONs, and CSV annotations
+├── tests/                       # Automated test suite (18 unit and integration tests)
+├── pyproject.toml               # Python project configuration and dependency specifications
+└── uv.lock                      # Deterministic dependency lockfile
 ```
 
-The endpoint and model are configurable:
+---
 
+## 9. Setup & Reproduction Guide
+
+### Prerequisites
+- Python 3.10+ (managed via `uv`)
+- A running vLLM server with multimodal Chat Completions enabled (`--model ...`)
+
+### Installation
 ```bash
+git clone https://github.com/bhanuponguru/dat_model_ops.git
+cd dat_model_ops
+uv sync
+```
+
+### Running Tests
+Execute the 18-test verification suite:
+```bash
+uv run python -m pytest -v
+```
+
+### Running the Benchmark
+```bash
+# Benchmark NuExtract 3
 uv run python benchmark.py \
   --base-url http://localhost:8000/v1 \
   --model nuextract3 \
+  --concurrency 4 \
   --output results/nuextract3.json
-```
 
-The default output budget is 4096 tokens. Increase it for documents with many
-long values:
-
-```bash
-uv run python benchmark.py --model nuextract3 --max-tokens 8192
-```
-
-For throughput, use independent concurrent requests. Each request still sends
-exactly one image; vLLM's scheduler performs continuous/in-flight batching
-across those requests:
-
-```bash
+# Benchmark IBM Granite Vision 3.1-2B
 uv run python benchmark.py \
-  --model nuextract3 \
-  --concurrency 4
+  --base-url http://localhost:8000/v1 \
+  --model ibm-granite/granite-vision-3.1-2b-preview \
+  --concurrency 4 \
+  --output results/granite-vision.json
 ```
 
-Start with a small value such as 2 or 4 and increase only while the server has
-available GPU memory and request latency remains acceptable. This is different
-from placing multiple images in one prompt. The benchmark preserves the
-original dataset order in the result JSON even though completion logs may
-arrive out of order.
-
-`--endpoint` remains accepted as an alias for `--base-url`. The value is the
-OpenAI-compatible base URL, not the full operation URL. The default is
-`http://localhost:8000/v1`; the script derives
-`/v1/chat/completions` internally. A full URL ending in
-`/chat/completions` is also accepted.
-
-The script uses vLLM's Chat Completions API with constrained decoding:
-* In `--schema-mode template` (default), fixed-schema datasets (SROIE, Nigeria medical
-  records, IDRBT cheques, IAM handwriting) and grouped-schema datasets (funds handwritten,
-  Forms600) use strict Pydantic v2 models. The schema is compiled into an OpenAI/vLLM-compliant
-  JSON schema (`additionalProperties: false`, all fields in `required` array) and passed
-  via `response_format={"type": "json_schema", ...}` as well as `extra_body={"guided_json": ...}`.
-* In `--schema-mode open`, arbitrary forms use vLLM's CFG-constrained generic JSON mode
-  `response_format={"type": "json_object"}`, ensuring valid JSON syntax without predefined keys.
-
-Evaluation metrics include:
-* **Form accuracy (Strict & Robust)**: proportion of forms for which every ground-truth field
-  is recovered. Strict requires exact normalized string match; Robust applies domain-aware
-  normalization (currency symbols, numeric trailing zeros, commas, date representations, abbreviations).
-* **Mean field accuracy (Strict & Robust)**: per-form recall of ground-truth fields, averaged across forms.
-* **Micro field accuracy (Strict & Robust)**: total correct fields divided by total ground-truth fields.
-* **Field Precision, Recall & F1**: evaluates true extraction completeness and penalizes hallucinations.
-* **Normalized Edit Distance (NED)**: character-level similarity metric ($1 - \text{Levenshtein} / \max$)
-  especially vital for handwriting transcription and noisy scans.
-
-Run comparative analysis and generate LaTeX tables with:
+### Analyzing Results & Updating Reports
 ```bash
 uv run python analyze_results.py \
   --nuextract results/nuextract3.json \
@@ -84,85 +175,7 @@ uv run python analyze_results.py \
   --update-report progress_report.tex
 ```
 
-Detailed per-example predictions, raw responses, latency, errors, warnings, and
-dataset summaries are written to the JSON file passed via `--output`. The
-unpacked files are intentionally retained so runs are reproducible.
-If a model response is malformed or truncated, the raw response is still
-retained in the JSON result and the error records the API `finish_reason` when
-available. This supports manual diagnosis instead of silently discarding the
-response.
-
-The benchmark also writes a per-field manual-review CSV beside that JSON by
-default. For example, `results/nuextract3.json` produces
-`results/nuextract3.review.csv`. Each row contains the dataset, image path,
-field name, ground truth, model prediction, automatic exact-match result, and
-blank `manual_status`/`manual_notes` columns for a reviewer to fill in. Extra
-predicted fields are included as rows too, making omissions and hallucinated
-fields visible. Override the path with `--review-output`.
-
-This review artifact is important because automatic exact match is not a
-complete correctness judgment: dates, abbreviations, punctuation, handwriting,
-and semantically equivalent values may need human adjudication. The original
-model response is also retained in the JSON result under `raw_response`.
-
-## Relevant benchmarks and prior art
-
-* **FUNSD**: form understanding in noisy scanned documents; its entity and
-  relation annotations motivate evaluating field recovery separately from
-  whole-form exact match. [Paper](https://arxiv.org/abs/1905.13538)
-* **SROIE**: ICDAR 2019 scanned receipt OCR and information extraction
-  competition; the local SROIE subset uses the familiar company/date/address/
-  total fields. [Paper](https://arxiv.org/abs/2103.10213)
-* **CORD**: receipt understanding benchmark, useful for later expanding beyond
-  exact flat key/value labels. [Dataset](https://github.com/clovaai/cord)
-* **Donut**: OCR-free document understanding transformer, a relevant
-  image-to-structured-output baseline. [Paper](https://arxiv.org/abs/2111.15664)
-* **DocVQA**: document visual question answering benchmark; it is relevant if
-  the extraction interface is changed from all-fields JSON to field questions.
-  [Task site](https://www.docvqa.org/)
-
-These references use different annotation schemes and often report entity
-precision/recall/F1 or normalized edit distance rather than whole-form exact
-match. The two requested metrics are therefore reported as the primary local
-metrics, while micro field accuracy and raw per-field results make comparisons
-with those conventions possible. Exact match is intentionally strict and
-should be supplemented with normalization or field-level F1 for production
-decisions.
-
-## Initial implementation report
-
-### Scope completed
-
-* Re-extracted all six current ZIP archives into `datasets/unpacked/`.
-* Added automatic discovery and pairing for all six layouts, including TIFF
-  cheque images.
-* Added an OpenAI-compatible vLLM Chat Completions client with configurable
-  base URL, model, timeout, request pacing, and JSON-constrained output.
-* Added fenced/free-form JSON response recovery, nested-label flattening,
-  per-example error capture, latency, and aggregate summaries.
-* Added per-field CSV logging for manual verification, including extra model
-  fields and reviewer status/notes columns.
-* Added schema-guided versus open-schema dataset handling.
-* Added configurable concurrent one-image requests to use vLLM continuous
-  batching for throughput without combining images in a prompt.
-* Added a document-digitization assistant system prompt focused on faithful
-  transcription and non-hallucination.
-
-### Initial inventory
-
-The extracted collections contain 25 Forms600 images, 25 SROIE images, 22
-Nigeria medical-record images, 26 handwritten fax images from
-`funds_handwritten_dataset`, 25 IDRBT cheque images, and 40 IAM handwriting
-images (subject to the pairing warnings printed by the script).
-The script is the source of truth for the final runnable count because it
-excludes only unpaired files and records those exclusions.
-
-### Recommended next experiment
-
-Run the same fixed sample order and prompt for each model/endpoint, preserve
-the JSON result files, and compare form accuracy, mean field accuracy, micro
-field accuracy, error rate, and latency by dataset. Before using scores as a
-release gate, add dataset-specific normalization (dates, currency, phone
-numbers), field-level precision/recall/F1, and a manually reviewed sample of
-JSON parses. The current strict comparison is useful as a reproducible
-baseline but can penalize semantically equivalent formatting.
+### Generating Presentation Slides
+```bash
+uv run python generate_slides.py -o presentation_slides.pptx
+```
