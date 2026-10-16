@@ -1,0 +1,37 @@
+{
+  "Name in Full (Block Letters)": "MAINAK SARKAR",
+  "Father's/Guardian's Name": "Deepak Sarkar",
+
+  "Permanent (Home) Address": "House No. 28, Deshapriya Park East, Near Rashbehari Avenue, Kolkata, West Bengal - 700029",
+  "Present Mailing Address": "House No. 28, Deshapriya Park East, Near Rashbehari Avenue, Kolkata, West Bengal - 700029",
+
+  "Telephone No. (with STD Code)": "+91-9876567890",
+  "M": "9876567890",
+
+  "Sex": {
+    "Male": "Yes",
+    "Female": "No"
+  },
+
+  "Marital Status": {
+    "Married": "No",
+    "Single": "Yes"
+  },
+
+  "Date of Birth": {
+    "Date": "05",
+    "Month": "03",
+    "Year": "1995"
+  },
+
+  "Academic Record": {
+    "Examination Passed": "M.Sc.",
+    "Year of Passing": "2017",
+    "Board/ University": "CBSE",
+    "Marks Obtained": "410",
+    "Total Marks": "500",
+    "%age of Marks Obtained": "82.0",
+    "Subjects": "Management"
+  }
+
+}

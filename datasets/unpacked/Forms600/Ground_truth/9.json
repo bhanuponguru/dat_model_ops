@@ -1,0 +1,36 @@
+{
+  "Branch": "ICICI BANK Andheri Branch",
+  "Date": "24/05/2025",
+
+  "Beneficiary Details": {
+    "Beneficiary Name": "MEERA IYER",
+    "Beneficiary Account Number": "56439946578",
+    "Beneficiary Bank": "ICICI Bank",
+    "Beneficiary Account Type": "NRE",
+    "Beneficiary Branch Name & Address": "Andheri, Hyderabad",
+    "IFSC Code": "PUNB0123456"
+  },
+
+  "Remitter Details": {
+    "Remitter (Applicant) Name": "TIYASHA SAHA",
+    "Remitter Account Number": "60439649237",
+    "Remitter Email ID": "tiyasha.saha@gmail.com",
+    "Remitter Mobile number": "+91 9745678912"
+  },
+  
+  "Standing Instruction Details": {
+    "Amount (in rupees)": "27949",
+    "Amount (in words)": "TWENTY SEVEN THOUSAND NINE HOUNDRED AND FORTY NINE ONLY",
+    "Execution date (DD/MM/YYYY format)": "28/05/2025",
+    "Last date (DD/MM/YYYY)": "30/03/2026",
+    "Frequency": {
+      "Weekly": "No",
+      "Bi-Monthly": "No",
+      "Monthly": "No",
+      "Quarterly": "No",
+      "Half-yearly": "No",
+      "Yearly": "No",
+      "One time": "Yes"
+    }
+  }
+}

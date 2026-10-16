@@ -1,0 +1,33 @@
+{
+  "Personal Information": {
+    "Name of the Applicant": "SRABONI CHATTERJEE",
+
+    "Father's Name": "RAKESH CHATTERJEE",
+    "Designation/Occupation": "Engineer",
+    "Annual Income of the Father/Guardian": "8,00,000",
+
+    "Date of Birth": {
+      "Day": "12",
+      "Month": "04",
+      "Year": "1999"
+    },
+
+    "Address for Correspondence": "Flat 3A, Ananya Apartment, Hazra Road, Kalighat, Kolkata, West Bengal - 700026",
+    "Permanent Address": "Flat 3A, Ananya Apartment, Hazra Road, Kalighat, Kolkata, West Bengal - 700026",
+
+    "Contact Tel No": {
+      "(R)": "019176543212",
+      "(M)": "08765432120"
+    },
+
+    "Sex": {
+      "Male": "No",
+      "Female": "Yes"
+    },
+
+    "University from which the Bachelor's Degree completed": "Jamia Millia Islamia",
+    "Year of Passing": "2015",
+    "Nationality": "Indian",
+    "State of Domicile": "Delhi"
+  }
+}

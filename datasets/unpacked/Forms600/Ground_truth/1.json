@@ -1,0 +1,65 @@
+{
+  "Personal Information": {
+    "Name": "Anirban Ghosh",
+    "Address": "Flat 5C, Shantiniketan Residency, 45 Gariahat Road, Ballygange, Kolkata, West Bengal",
+    "ZIP Code": "700019",
+    "Date of Birth": "10-31-1987",
+    "Phone No": "+91-9830011223",
+    "Email": "anirban.ghosh@gmail.com"
+  },
+  "Position Applied": {
+    "Position": "Marketing Manager",
+    "Available for Work": "Within 1 Month"
+  },
+  "Educational Background": [
+    {
+      "Level of Education": "Bachelor's",
+      "Major": "English",
+      "Graduate Year": "2021"
+    },
+    {
+      "Level of Education": "",
+      "Major": "",
+      "Graduate Year": ""
+    },
+    {
+      "Level of Education": "",
+      "Major": "",
+      "Graduate Year": ""
+    }
+  ],
+  "Work Experience": [
+    {
+      "Company Name": "HDFC Bank",
+      "Position": "Marketing Manager",
+      "Period": "2020-2022"
+    },
+    {
+      "Company Name": "",
+      "Position": "",
+      "Period": ""
+    },
+    {
+      "Company Name": "",
+      "Position": "",
+      "Period": ""
+    }
+  ],
+  "Certifications & Additional Training": [
+    {
+      "Certification Title": "Digital Marketing",
+      "Organization": "IIM Bangalore",
+      "Completion Date": "2023"
+    },
+    {
+      "Certification Title": "",
+      "Organization": "",
+      "Completion Date": ""
+    },
+    {
+      "Certification Title": "",
+      "Organization": "",
+      "Completion Date": ""
+    }
+  ]
+}

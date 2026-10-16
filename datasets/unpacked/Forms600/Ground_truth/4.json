@@ -1,0 +1,48 @@
+{
+  "Personal Information": {
+    "Full Name": "Ritoban Bhattacharya",
+    "Date of Birth": "01-30-1999",
+    "Gender": "Male",
+    "Address": "Flat 2B, Saptarshi Apartments, 102 Jodhpur Park, Kolkata, West Bengal - 700068",
+    "City": "Kolkata",
+    "State/Province": "West Bengal",
+    "Zip/Postal Code": "700068",
+    "Country": "India",
+    "Phone Number": "+91-9812345678",
+    "Email Address": "ritoban.bhattacharya@gmail.com"
+  },
+
+  "Educational Background": [
+    {
+      "Degree/Course": "M.Sc Physics",
+      "University/Institute": "IIM Ahmedabad",
+      "Year of Graduate": "2022",
+      "Grade": "B",
+      "City": "Kolkata"
+    }
+  ],
+
+  "Employment History": [
+    {
+      "Employee": "Reliance Industries",
+      "Job Title": "Developer",
+      "Address": "Flat 2B, Saptarshi Apartments, 102 Jodhpur Park, Kolkata, West Bengal - 700068",
+      "Start Date": "03-26-2024",
+      "End Date": "10-28-2025",
+      "Responsibilities": "Project Planning",
+      "Why I Quit": "Better opportunity"
+    }
+  ],
+
+  "Skills & Training": [
+    {
+      "Skill & Training Achievement(s)": "Cloud Computing",
+      "Level": "Beginner",
+      "Year": "2017",
+      "Institute": "Udemy"
+    }
+  ],
+
+  "Date": "05-24-2025",
+  "Signature": "Ritoban Bhattacharya"
+}

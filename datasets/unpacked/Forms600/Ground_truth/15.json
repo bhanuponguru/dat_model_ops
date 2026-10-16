@@ -1,0 +1,33 @@
+{
+  "PERSONAL INFORMATION": {
+    "Name of the Applicant": "NILADRI SINHA",
+
+    "Father's Name": "AMIT SINHA",
+    "Designation/Occupation": "Clerk",
+    "Annual Income of the Father/Guardian": "2,00,000",
+
+    "Date of Birth": {
+      "Day": "27",
+      "Month": "01",
+      "Year": "2001"
+    },
+
+    "Address for Correspondence": "Flat No. 12, Sukriti Residency, Behala Chowrasta, Kolkata, West Bengal - 7000",
+    "Permanent Address": "Flat No. 12, Sukriti Residency, Behala Chowrasta, Kolkata, West Bengal - 700034",
+
+    "Contact Tel No": {
+      "(R)": "019176543221",
+      "(M)": "08765432210"
+    },
+
+    "Sex": {
+      "Male": "Yes",
+      "Female": "No"
+    },
+
+    "University from which the Bachelor's Degree completed": "Jadavpur University",
+    "Year of Passing": "2017",
+    "Nationality": "Indian",
+    "State of Domicile": "West Bengal"
+  }
+}

@@ -1,0 +1,36 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv/
+
+# Testing & tool caches
+.pytest_cache/
+
+# LaTeX artifacts and report outputs
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.zip
+progress_report.pdf
+progress_report.tex
+report_figures/
+report_examples/
+DAT_Assignment1.pdf
+
+# Benchmark results and outputs
+results/
+benchmark_results.json
+benchmark_results.review.csv
+
+# Presentation slides and generator
+presentation_slides.pptx
+generate_slides.py

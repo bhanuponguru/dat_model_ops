@@ -1,0 +1,71 @@
+{
+  "First Name": "SOURAV",
+  "Middle Name": "",
+  "Surname": "SEN",
+  "Date of Birth/ Incorporation of declarant": "22/08/2005",
+
+  "Father's Name (in case of individual)/ First Name": "ARKA",
+  "Father's Middle Name": "",
+  "Father's Surname": "SEN",
+
+  "Flat/Room No": "",
+  "Floor No": "1st",
+  "Name of premises": "Lake Gardens Housing Complex",
+  "Block Name/No": "D10",
+  "Road/Street/Lane": "Prince Anwar Shah Road",
+  "Area/Locality": "Lake Gardens Housing Complex",
+  "Town/City": "Kolkata",
+  "District": "Kolkata",
+  "State": "West Bengal",
+  "Pin code": "700045",
+  "Telephone Number (wth STD code)": "033-23533997",
+  "Mobile No": "+91 9800011223",
+
+  "Amount of tansaction (Rs)": "6522",
+  "Date of transaction": "24/05/2025",
+  "In case of transaction in joint names, number of persons involved in the transaction": "3",
+  "Mode of transaction": "Card",
+  "Aadhaar Number issued by UIDAI (if available)": "472646912498",
+
+  "If applied for PAN and it is not yet generated enter date of application and acknowedgement number": "",
+
+  "Estimated Total Income": {
+    "Agricultural income (Rs.)": "9523",
+    "Other than agricultural income (Rs)": "133756"
+  },
+
+  "Details of document being produced in support of identify in Column 1": {
+    "Document code": "C3",
+    "Document identification number": "DOC23910",
+    "Name and address of the authority issuing the document": "RTO"
+  },
+
+  "Details of document being produced in support of address in Columns 4 to 13": {
+    "Document code": "C3",
+    "Document identification number": "DOC23910",
+    "Name and address of the authority issuing the document": "RTO"
+  },
+
+  "Transaction Type": {
+    "05- Investment in time deposit": "No",
+    "06- Deposit in cash": "Yes",
+    "09- Opening an account (other than savings and time deposit)": "No",
+    "10- Account with balance exceeding Rs. 50,000": "No",
+    "11- Purchase of bank drafts or pay orders": "No",
+    "12- Application for issue of a credit or debit card": "No",
+    "14- Payment in connection with travel to any foreign country": "No",
+    "15- Payment for purchase, or remittance outside India": "No",
+    "22- Not classified above": "No"
+  },
+
+  "Verification": {
+    "Name": "Sourav Sen",
+    "Verified today": {
+      "Date": "24",
+      "Month": "May",
+      "Year": ""
+    },
+    "Place": "Kolkata",
+    "Signature of Declarant": "Sourav Sen"
+  }
+}

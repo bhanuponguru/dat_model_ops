@@ -1,0 +1,44 @@
+{
+  "Name of the Student": "RITIKA BASU",
+  "Father's Name": "Mr. Ashok Basu",
+  "Course of Study": "MBA",
+
+  "Category": {
+    "GE": "No",
+    "SC": "Yes",
+    "ST": "No",
+    "OBC": "No",
+    "PH": "No",
+    "DP": "No"
+  },
+
+  "Date of Joining": "17/09/2023",
+  "Hallticket/ Enrol. No": "HT529380",
+  "Date of leaving": "03/04/2025",
+
+  "Reason(s) for leaving": {
+    "Joining another University": "No",
+    "Course": "",
+    "Taking up employment": "No",
+    "Financial Problems": "No",
+    "Non-availability of Hostel": "No",
+    "Personal Problems": "Yes",
+    "Any other reason, please specify": ""
+  },
+
+  "Particulars of the fees paid": {
+    "Tuition and other fees paid on Dt": "06/11/2024",
+    "Rs": "5216"
+  },
+
+  "Bank A/c details of the Student (IN BLOCK LETTERS)": {
+    "Bank Name": "STATE BANK OF INDIA",
+    "Bank Account No": "33619908862",
+    "Branch Name and IFSC Code": "HITECH CITY, SBIN6762364"
+  },
+
+  "Date": "24/05/2025",
+  "Signature of the Student": "Ritika Basu",
+
+  "Dean of the School/ Head of the Department/ Centre": "Dr. Iyer"
+}

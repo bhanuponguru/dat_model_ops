@@ -1,0 +1,19 @@
+{
+  "Personal Information": {
+    "Full Name": "DEEPIKA SHAH",
+    "Place Birth": "Surat",
+    "Birth of Date": "31/07/2007",
+    "Full Address": "A-204, Diamond Residency, Ring Road, Near Surat Castle, Surat",
+    "Nationality": "Indian",
+    "city/country": "Surat, India",
+    "Gander": "Female",
+    "Email": "deepika.shah@gmail.com",
+    "Phone Number": "+91-9979123456"
+  },
+
+  "Type Of Membership": {
+    "Regular (3 month)": "Yes",
+    "Gold (6 month)": "No",
+    "Platinum (12 month)": "No"
+  }
+}

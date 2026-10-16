@@ -1,0 +1,36 @@
+{
+  "Branch": "HDFC Bank Andheri Branch",
+  "Date": "28/05/2025",
+
+  "Beneficiary Details": {
+    "Beneficiary Name": "Rahul Verma",
+    "Beneficiary Account Number": "14389265008",
+    "Beneficiary Bank": "HDFC Bank",
+    "Beneficiary Account Type": "Current",
+    "Beneficiary Branch Name & Address": "Andheri, Delhi",
+    "IFSC Code": "ICIC0004321"
+  },
+
+  "Remitter Details": {
+    "Remitter (Applicant) Name": "Sraboni Chatterjee",
+    "Remitter Account Number": "80698884928",
+    "Remitter Email ID": "sraboni.chatterjee@gmail.com",
+    "Remitter Mobile number": "9876543212"
+  },
+
+  "Standing Instruction Details": {
+    "Amount (in rupees)": "88334",
+    "Amount (in words)": "88334 Rupees Only",
+    "Execution date (DD/MM/YYYY format)": "30/05/2025",
+    "Last date (DD/MM/YYYY)": "30/06/2025",
+    "Frequency": {
+      "Weekly": "No",
+      "Bi-Monthly": "No",
+      "Monthly": "No",
+      "Quarterly": "Yes",
+      "Half-yearly": "No",
+      "Yearly": "No",
+      "One time": "No"
+    }
+  }
+}

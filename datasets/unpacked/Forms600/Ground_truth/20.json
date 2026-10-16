@@ -1,0 +1,61 @@
+{
+  "Part 1": {
+    "Customer ID": "CUST844691",
+
+    "Name": {
+      "First": "Saptarshi",
+      "Middle": "Prasad",
+      "Last /Surname": "Roy"
+    },
+
+    "Type of account held": {
+      "Checking": "Yes",
+      "Money Market Deposit": "Yes",
+      "Certificate of Deposit": "Yes"
+    },
+
+    "Social Security No./Tax Identification No./ Permanent Account Number (PAN) (*Indian Citizen)": "ABCDE6131F",
+
+    "Employment Details": {
+      "Employed": "No",
+      "Self-employed": "No",
+      "Retired": "No",
+      "Unemployed": "Yes",
+      "Student": "No",
+      "Others (give details)": ""
+    },
+
+    "Occupation": "Student",
+
+    "Name of Employer in case employed": "Saptarshi Roy",
+
+    "Address": {
+      "Home Address": {
+        "Address Line 1": "",
+        "Address Line 2": "",
+        "Address Line 3": "",
+        "City": "",
+        "State": "",
+        "Country": "",
+        "Zip Code": ""
+      },
+      "Work Address": {
+        "Address Line 1": "Flat 4D",
+        "Address Line 2": "Krishna Enclave",
+        "Address Line 3": "88A Naktala Road",
+        "City": "Kolkata",
+        "State": "West Bengal",
+        "Country": "India",
+        "Zip Code": "700047"
+      }
+    },
+
+    "Email": "saptarshi.roy@gmail.com",
+
+    "Contact/ Mobile Number": {
+      "Home": "+91-9800456123",
+      "Mobile": "+91-9800456123",
+      "Work": "+91 9836784424"
+    }
+  }
+}

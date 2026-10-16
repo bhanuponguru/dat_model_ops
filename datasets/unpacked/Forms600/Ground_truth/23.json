@@ -1,0 +1,65 @@
+{
+  "Account No.": "",
+
+  "Beneficiary Details": {
+    "Name in Full": "Ruma Devi Sharma",
+    "Mailing Address": "House No. 46, Panbazar, Near Karmakhya Mandir",
+    "City": "Guwahati",
+    "Country": "India",
+    "State": "Assam",
+    "Postal Code": "781001"
+  },
+
+  "Beneficiary's Bank Details": {
+    "A/C No.": "29175600773",
+    "Branch": "Park Street",
+    "SWIFT/SORT CODE": "SBINUS2699",
+    "Name of Bank": "State Bank of India",
+    "City/Country": "Guwahati, India",
+    "Postal Code": "781001"
+  },
+
+  "Intermediary Bank Details": {
+    "Name of Bank": "State Bank of India",
+    "Address": "947 Frankfurt Ave, Frankfurt",
+    "SWIFT/SORT CODE": "SBINUS2699",
+    "Branch": ""
+  },
+
+  "Currency": "EUR",
+
+  "Send official check payable to me on the following address": {
+    "City": "Guwahati",
+    "Country": "India",
+    "State": "Assam",
+    "Postal Code": "781001"
+  },
+
+  "Other disposal method": "",
+
+  "Applicants": {
+    "First Applicant": {
+      "Signature": "Mary D'Souza",
+      "Name": ""
+    },
+    "Second Applicant": {
+      "Signature": "Ashish Tiwari",
+      "Name": ""
+    },
+    "Third Applicant": {
+      "Signature": "Ruma Devi Sharma",
+      "Name": ""
+    },
+    "Date": "31/05/2025",
+    "Place": "Panaji"
+  },
+
+  "FOR USE OF NEW YORK BRANCH ONLY": {
+    "Application scrutinized and found in order and modifications made": "No",
+    "Deficiencies have been observed and conveyed to the applicant": "No",
+    "Associate": "Mr. S. Ghose",
+    "Associate Date": "31/05/2025",
+    "Authorised Official": "Mr. S. Ghose",
+    "Authorised Official Date": "31/05/2025"
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "Demographic Information": {
+    "Name": "Debdeep Mukherjee",
+    "Age": "47",
+    "Gender": "Male",
+    "Occupation": "Engineer",
+    "Marital Status": "Divorced"
+  },
+
+  "Chief Complaint": {
+    "Presenting Issue": "Repetitive thoughts and compulsive behaviors",
+    "Duration of Symptoms": "1 year",
+    "Severity": "Moderate"
+  },
+
+  "Medical History": {
+    "Past Psychiatric History": "No prior psychiatric illness",
+    "Medical Conditions": "No significant medical history",
+    "Substance Use": "Tobacco chewing for 5 years"
+  },
+
+  "Family Psychiatric History": {
+    "Family History": "Sibling with schizophrenia",
+    "Substance Use in Family": "Brother drinks alcohol occasionally"
+  },
+
+  "Social History": {
+    "Living Situation": "Lives alone",
+    "Education": "Postgraduate",
+    "Social Support": "Active in community groups",
+    "Legal Issues": "Pending divorce case"
+  },
+
+  "Psychosocial Functioning": {
+    "Employment Status": "Retired",
+    "Relationships": "Frequent arguments with family",
+    "Daily Activities": "Neglects self-care"
+  },
+
+  "Treatment History": {
+    "Current Medications": "Olanzapine 5mg at night",
+    "Previous Treatments": "No previous treatment"
+  },
+
+  "Diagnosis": {
+    "Primary Diagnosis": "Bipolar Affective Disorder",
+    "Secondary Diagnosis": "Diabetes Mellitus"
+  }
+
+}

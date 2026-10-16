@@ -1,0 +1,57 @@
+{
+  "Train No. & Name": "",
+  "Date of Journey": "18-06-2025",
+  "Class": "SL",
+  "No. of Berth/Seats": "2",
+  "Station From": "Pune",
+  "To": "Patna",
+  "Boarding at": "Pune",
+  "Reservation Upto": "Patna",
+
+  "Passenger 1": {
+    "Name in Block Letters (not more than 15 Characters)": "AMIT PATEL",
+    "Gender(M/F)": "M",
+    "Age": "20",
+    "Concession/Travel Authority No": "TRV-2025-4",
+    "Berth Choice Lower/Upper": "Middle",
+    "Veg/Non-Veg.for Rajdhani Shatabi Exp Only": "Non-Veg"
+  },
+
+  "Passenger 2": {
+    "Name in Block Letters (not more than 15 Characters)": "DEEPAK REDDY",
+    "Gender(M/F)": "M",
+    "Age": "20",
+    "Concession/Travel Authority No": "TRV-2025-7",
+    "Berth Choice Lower/Upper": "Side Upper",
+    "Veg/Non-Veg.for Rajdhani Shatabi Exp Only": "Non-Veg"
+  },
+
+  "Childern below 5 years (Fo whom ticket is not to be issued)": {
+    "Name in block letters children": "",
+    "Gender M/F children": "",
+    "Age children": ""
+  },
+
+  "Onward/Return Journey Details": {
+    "Train No. & Name": "12621 Tamil Nadu Express",
+    "Date of Journey": "18-06-2025",
+    "Class": "SL",
+    "No. of Berths/Seats": "",
+    "Station From": "Pune",
+    "To": "Patna",
+    "Name of Applicant": "Priyabrata Chakraborty",
+    "Full Address": "Flat 8A, Ramakrishna Nagar, Near Ramakrishna Mission, Golpark, Kolkata, West Bengal - 700029",
+    "Signature of the Applicant/Representative": "",
+    "Tel /Mob.No. if any": "+91-9831456789",
+    "Date": "31-05-2025",
+    "Time": "05:29"
+  },
+
+  "For Official Use Only": {
+    "S.No. Requisition": "REQ-2025-83061",
+    "PNR No": "5702367000",
+    "Berth /Seat No": "",
+    "Amount Collected": "728",
+    "Signature of Reservation Clerk": ""
+  }
+}
